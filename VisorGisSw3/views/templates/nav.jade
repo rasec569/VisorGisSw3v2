@@ -6,22 +6,24 @@ nav(class="navbar navbar-default")
         span(class="icon-bar")
         span(class="icon-bar")
         span(class="icon-bar")
-      a(class="navbar-brand" href="/")= 'Inmobiliaria'
+      a(class="navbar-brand" href="/")= 'Inmobiliaria Amazonia'
     
     div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")     
       ul(class="nav navbar-nav navbar-right")
-        li
-          a(href="http://localhost:3000/login/registrar")= 'Registrarse'
-        li
-          a(href="http://localhost:3000/login/inicioSec")= 'Iniciar Sesion'
-        li(class="dropdown")
-          a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")= 'Nombre Usuario'
-            span(class="caret")
-          ul(class="dropdown-menu")
-            li
-              a(href="")= 'Perfil'
-            li
-              a(href="")= 'Cerrar Sesion'
-            li
-              a(href="")= 'Visor'
+        if !isAuthenticated
+          li
+            a(href="http://localhost:3000/login/registrar")= 'Registrarse'
+          li
+            a(href="http://localhost:3000/login/inicioSec")= 'Iniciar Sesion'
+        if isAuthenticated   
+          li(class="dropdown")
+            a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")= user.nombre
+              span(class="caret")
+            ul(class="dropdown-menu")
+              li
+                a(href="'http://localhost:3000/user/panel'")= 'Perfil'
+              li
+                a(href="http://localhost:3000/login/salir")= 'Cerrar Sesion'
+              li
+                a(href="")= 'Visor'
     

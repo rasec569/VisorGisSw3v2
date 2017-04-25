@@ -11,7 +11,7 @@ var db = mysql.createConnection(conexion);
 
 function Usuario(Identificacion, Nombre, Apellido, User, Pass, email) {
 	this.Identificacion = Identificacion,
-	this.Nombre = Nombre;
+		this.Nombre = Nombre;
 	this.Apellido = Apellido;
 	this.User = User;
 	this.Pass = Pass;
@@ -28,12 +28,12 @@ function Usuario(Identificacion, Nombre, Apellido, User, Pass, email) {
 
 
 		Usuario = {
-		identificacion : req.body.ide,
-		nombre : req.body.nom,
-		apellido : req.body.ape,
-		usuario : req.body.us,
-		pass : pass,
-		email : req.body.email
+			identificacion: req.body.ide,
+			nombre: req.body.nom,
+			apellido: req.body.ape,
+			usuario: req.body.us,
+			pass: pass,
+			email: req.body.email
 
 		}
 
@@ -51,8 +51,18 @@ function Usuario(Identificacion, Nombre, Apellido, User, Pass, email) {
 	};
 
 	this.getinicioSec = function (req, res, next) {
-		res.render('./user/inicioSec.jade', { mensaje: req.flash('mensaje') });
+		res.render('./user/inicioSec.jade', { mensaje: req.flash('mensaje'), authmessage: req.flash('authmessage') });
 
+	};
+	this.salir = function (req, res, next) {
+		req.logout();
+		res.redirect('inicioSec');
+	};
+	this.getpanelusuario = function (req, res, next) {
+		res.render('./user/panel.jade', {
+			isAuthenticated: req.isAuthenticated(),
+			user: req.user
+		});
 	}
 
 	return this;

@@ -17,5 +17,8 @@ module.exports = {
 	},
 	salir: function (req, res, next) {
 		u.salir(req, res, next);
+	},
+	getpanelusuario: function (req, res, next) {
+		u.getpanelusuario(req, res, next);
 	}
 };
