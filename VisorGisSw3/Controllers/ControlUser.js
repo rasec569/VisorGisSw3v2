@@ -20,5 +20,8 @@ module.exports = {
 	},
 	getpanelusuario: function (req, res, next) {
 		u.getpanelusuario(req, res, next);
+	},
+	getpanelusuarioA: function (req, res, next) {
+		u.getpanelusuarioA(req, res, next);
 	}
 };

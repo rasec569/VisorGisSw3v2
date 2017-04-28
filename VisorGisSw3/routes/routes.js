@@ -22,6 +22,7 @@ if (IUsuario() == true) {
         }));
        router.get('/login/salir', Controllers.ControlUser.salir);
        router.get('/user/panel', Autenticado.isLogged ,Controllers.ControlUser.getpanelusuario);
+       router.get('/Admin/panelAdmin', Controllers.ControlUser.getpanelusuarioA);
 }
 
 module.exports = router;

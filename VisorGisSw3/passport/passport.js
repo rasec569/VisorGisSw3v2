@@ -41,7 +41,8 @@ module.exports = function (passport) {
 						id: user.identificacion,
 						nombre: user.nombre,
 						apellido: user.apellido,
-						email: user.email
+						email: user.email,
+						roll: user.tipo_usuario
 					});
 				}
 			}

@@ -1,5 +1,11 @@
 extends ../templates/default
+link(rel="stylesheet" href="//js.arcgis.com/3.10/js/esri/css/esri.css")
+link(rel="stylesheet" href="//esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css")
 
 block content
 
-  p= 'Hola... ' + user.nombre 
+  p= 'Bienvenido  ' + user.nombre +' '+user.apellido+' ---'
+    style.
+      .embed-container {position: relative; padding-bottom: 80%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 60%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}
+    .embed-container
+      iframe(width='500', height='400', frameborder='0', scrolling='no', marginheight='0', marginwidth='0', title='ubicaciones', src='//sw3.maps.arcgis.com/apps/Embed/index.html?webmap=3ee836bf75b14970976db71ca50b8858&extent=-75.6482,1.5975,-75.5584,1.6428&zoom=true&scale=true&legendlayers=true&disable_scroll=true&theme=light')
