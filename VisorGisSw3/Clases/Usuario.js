@@ -11,7 +11,7 @@ var db = mysql.createConnection(conexion);
 
 function Usuario(Identificacion, Nombre, Apellido, User, Pass, email, telefono, tipo_usuario) {
 	this.Identificacion = Identificacion,
-		this.Nombre = Nombre;
+	this.Nombre = Nombre;
 	this.Apellido = Apellido;
 	this.User = User;
 	this.Pass = Pass;
