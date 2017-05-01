@@ -21,8 +21,10 @@ if (IUsuario() == true) {
                 failureflash: true
         }));
        router.get('/login/salir', Controllers.ControlUser.salir);
-       router.get('/user/panel', Autenticado.isLogged ,Controllers.ControlUser.getpanelusuario);
-       router.get('/Admin/panelAdmin', Controllers.ControlUser.getpanelusuarioA);
+       router.get('/user/panel', Autenticado.isLogged, Controllers.ControlUser.getpanelusuario);
+       router.get('/user/gestionar', Autenticado.isLogged, Controllers.ControlUser.getgestionarUs);
+       router.get('/user/mofificar', Autenticado.isLogged, Controllers.ControlUser.getModificar);
+
 }
 
 module.exports = router;

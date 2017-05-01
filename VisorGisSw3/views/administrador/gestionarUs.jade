@@ -1,0 +1,49 @@
+extends ../templates/default 
+block content
+
+  center
+    table(border='0')
+      tbody
+        tr
+          td
+            input(type='text' name='ide' id='ide' placeholder='Idetificación' class='form-control')
+        tr
+          td
+            input(type='text' name='us' id='us' placeholder='Usuario' class='form-control')
+        tr
+          td
+            center
+                button(type="submit" class='btn btn-default' onclick=" location.href='http://localhost:3000/user/mofificar'+ ide " )= 'Modificar'  
+                button(type="submit" class='btn btn-default' onclick=" location.href='http://www.google.com' " )= 'Eliminar'
+
+
+ 
+  div(class=['ui', 'container', 'grid', 'stackable'])
+      div(class=['sixteen', 'wide', 'column'])
+
+        h2(class=['ui', 'header', 'blue', 'dividing'])= 'Lista de Usuarios'
+    
+        table(class=['ui', 'table', 'celled'] id = 'tbl-usuarios')
+          thead
+              tr
+                  th='Identificacion'
+                  th='Nombre'
+                  th='Apellido'
+                  th='Usuarrio'
+                  th='fecha de nacimiento'
+                  th='Email'
+                  th='Telefono'
+                  th='Tipo'
+                  th='Fecha de registro'                
+          tbody
+              each usuario in usuarios
+                tr
+                  td(id='identificacion')= usuario.identificacion
+                  td= usuario.nombre
+                  td= usuario.apellido
+                  td= usuario.usuario
+                  td= usuario.nacimiento
+                  td= usuario.email
+                  td= usuario.telefono
+                  td= usuario.roll
+                  td= usuario.fecha_registro

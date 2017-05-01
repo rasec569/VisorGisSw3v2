@@ -9,15 +9,17 @@ var conexion = require('../Datos/conexion');
 var db = mysql.createConnection(conexion);
 
 
-function Usuario(Identificacion, Nombre, Apellido, User, Pass, email, telefono, tipo_usuario) {
+function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email, telefono, tipo_usuario, fecha_registro) {
 	this.Identificacion = Identificacion,
-	this.Nombre = Nombre;
+		this.Nombre = Nombre;
 	this.Apellido = Apellido;
+	this.Nacimiento = Nacimiento;
 	this.User = User;
 	this.Pass = Pass;
 	this.email = email;
 	this.telefono = telefono;
 	this.tipo_usuario = tipo_usuario;
+	this.fecha_registro = fecha_registro;
 
 	this.getregistrar = function (req, res, next) {
 		res.render('./user/registrar.jade');
@@ -28,11 +30,11 @@ function Usuario(Identificacion, Nombre, Apellido, User, Pass, email, telefono, 
 		var salt = bcrypt.genSaltSync(10);
 		var pass = bcrypt.hashSync(req.body.pas, salt);
 
-
 		Usuario = {
 			identificacion: req.body.ide,
 			nombre: req.body.nom,
 			apellido: req.body.ape,
+			nacimiento: req.body.nac,
 			usuario: req.body.us,
 			pass: pass,
 			email: req.body.email,
@@ -61,8 +63,6 @@ function Usuario(Identificacion, Nombre, Apellido, User, Pass, email, telefono, 
 					res.redirect('inicioSec');
 				}
 			});
-
-
 	};
 
 	this.getinicioSec = function (req, res, next) {
@@ -74,28 +74,55 @@ function Usuario(Identificacion, Nombre, Apellido, User, Pass, email, telefono, 
 		res.redirect('inicioSec');
 	};
 	this.getpanelusuario = function (req, res, next) {
-		console.log('trajo',req.body.tipo_usuario)
+		console.log('trajo', req.body.tipo_usuario)
 
+		res.render('./user/panel.jade', {
+			isAuthenticated: req.isAuthenticated(),
+			user: req.user
 
-		if (req.body.tipo_usuario == 1) {
-			res.render('./user/panel.jade', {
+		});
+	};
+	this.getUsuarios = function (req, res, next) {
+		db.connect();
+		db.query('SELECT * FROM usuario inner join tipo_usuario on id_Tipo = tipo_usuario', function (err, rows, fields) {
+			if (err) throw err;
+			Usuario = rows;
+			db.end();
+			res.render('administrador/gestionarUs', {
+				usuarios: Usuario,
 				isAuthenticated: req.isAuthenticated(),
 				user: req.user
 			});
-		} else {
-			res.render('./user/panelAdmin.jade', {
-				isAuthenticated: req.isAuthenticated(),
-				user: req.user				
+		});
+	};
+	this.getModificar = function (req, res, next) {
+		identificacion: req.body.ide;
+		usuario: req.body.us;
+		
+		console.log('trajo id', identificacion)
+		console.log('trajo us', usuario)
+
+		if (identificacion != null) {
+			db.connect();
+			db.query('SELECT * FROM usuario WHERE identificacion = ?', identificacion, function (err, rows, fields) {
+				if (err) throw err;
+				resultado = rows;
+				console.log(resultado);
+				db.end();
+				res.render('./user/modificar.jade', { persona: resultado });
+			});
+
+		} else if (usuario != null) {
+			db.connect();
+			db.query('SELECT * FROM usuario WHERE usuario = ?', usuario, function (err, rows, fields) {
+				if (err) throw err;
+				resultado = rows;
+				console.log(resultado);
+				db.end();
+				res.render('./user/modificar.jade', { persona: resultado });
 			});
 		}
-	};
-	this.getpanelusuarioA = function (req, res, next) {
-		res.render('./user/panelAdmin.jade', {
-			isAuthenticated: req.isAuthenticated(),
-			user: req.user
-		});
 	}
-
 	return this;
 };
 

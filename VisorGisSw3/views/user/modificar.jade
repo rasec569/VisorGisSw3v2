@@ -7,9 +7,9 @@ block content
       //-   div(class='alert alert-success' role='alert')= mensaje
 
       div(class='panel panel-default')
-        div(class='panel-heading')= 'Registrarme'
+        div(class='panel-heading')= 'Modificar'
         div(class='panel-body')
-          form(action='http://localhost:3000/login/registrar' method='post' autocomplete='on')
+          form(action='http://localhost:3000/user/modificar' method='post' autocomplete='on')
             div(class='form-group')
               label(for="ide")= 'Idetificación'
               input(type='text' name='ide' id='ide' placeholder='Idetificación' class='form-control')
@@ -34,4 +34,4 @@ block content
             div(class='form-group')
               label(for="tel")= 'Telefono'
               input(type='text' name='tel' id='tel' placeholder='Telefono' class='form-control')
-            button(type="submit" class='btn btn-default')= 'Registrarme'
+            button(type="submit" class='btn btn-default')= 'Modificar'
