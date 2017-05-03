@@ -11,7 +11,7 @@ var db = mysql.createConnection(conexion);
 
 function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email, telefono, tipo_usuario, fecha_registro) {
 	this.Identificacion = Identificacion,
-		this.Nombre = Nombre;
+	this.Nombre = Nombre;
 	this.Apellido = Apellido;
 	this.Nacimiento = Nacimiento;
 	this.User = User;
@@ -58,7 +58,7 @@ function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email
 					} else {
 
 						res.redirect('inicioSec');
-						
+
 					}
 				} else {
 					req.flash('mensaje', 'Registo corecto, puede iniciar sesion')
