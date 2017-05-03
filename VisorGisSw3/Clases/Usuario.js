@@ -51,12 +51,14 @@ function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email
 					if (err.errno == 1062) {
 						req.flash('mensaje', 'Usuario registrado')
 						res.render('./user/registrar.jade', { mensaje: req.flash('mensaje'), authmessage: req.flash('authmessage') });
+						db.end();
 
 						//res.redirect('registrar');
 
 					} else {
 
 						res.redirect('inicioSec');
+						
 					}
 				} else {
 					req.flash('mensaje', 'Registo corecto, puede iniciar sesion')
