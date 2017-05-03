@@ -22,8 +22,10 @@ if (IUsuario() == true) {
         }));
        router.get('/login/salir', Controllers.ControlUser.salir);
        router.get('/user/panel', Autenticado.isLogged, Controllers.ControlUser.getpanelusuario);
+       router.get('/user/visoradmin', Autenticado.isLogged, Controllers.ControlUser.getvisoradmin);
        router.get('/user/gestionar', Autenticado.isLogged, Controllers.ControlUser.getgestionarUs);
-       router.get('/user/mofificar', Autenticado.isLogged, Controllers.ControlUser.getModificar);
+       router.get('/user/perfil', Autenticado.isLogged, Controllers.ControlUser.getperfil);
+       router.get('/user/modificar/:identificacion', Autenticado.isLogged, Controllers.ControlUser.getModificar);
 
 }
 

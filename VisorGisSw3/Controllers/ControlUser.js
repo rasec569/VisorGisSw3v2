@@ -21,10 +21,18 @@ module.exports = {
 	getpanelusuario: function (req, res, next) {
 		u.getpanelusuario(req, res, next);
 	},
+	getvisoradmin: function (req, res, next) {
+		u.getvisoradmin(req, res, next);
+	},
+	getperfil: function (req, res, next) {
+		u.getperfil(req, res, next);
+	},
+
 	getgestionarUs: function (req, res, next) {
 		u.getUsuarios(req, res, next);
 	},
 	getModificar: function (req, res, next) {
 		u.getModificar(req, res, next);
+		
 	}
 };

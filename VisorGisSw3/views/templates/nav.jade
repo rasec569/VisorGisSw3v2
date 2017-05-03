@@ -7,7 +7,7 @@ nav(class="navbar navbar-default")
         span(class="icon-bar")
         span(class="icon-bar")
       a(class="navbar-brand" href="/")= 'Inmobiliaria Amazonia'
-    
+
     div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")     
       ul(class="nav navbar-nav navbar-right")
         if !isAuthenticated
@@ -21,9 +21,16 @@ nav(class="navbar navbar-default")
               span(class="caret")
             ul(class="dropdown-menu")
               li
-                a(href="'http://localhost:3000/user/panel'")= 'Perfil'
+                a(href="http://localhost:3000/user/perfil")= 'Perfil'
               li
                 a(href="http://localhost:3000/login/salir")= 'Cerrar Sesion'
-              li
-                a(href="")= 'Visor'
-    
+              if user.roll==2 
+                li
+                  a(href="http://localhost:3000/user/panel")= 'Visor'
+
+              if user.roll==1
+                li
+                  a(href="http://localhost:3000/user/visoradmin")= 'Visor'
+                li
+                  a(href="http://localhost:3000/user/gestionar")= 'Panel'
+

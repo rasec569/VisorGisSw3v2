@@ -82,6 +82,26 @@ function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email
 
 		});
 	};
+	this.getvisoradmin = function (req, res, next) {
+		console.log('trajo', req.body.tipo_usuario)
+
+		res.render('./administrador/visoradmin.jade', {
+			isAuthenticated: req.isAuthenticated(),
+			user: req.user
+
+		});
+	};
+
+	this.getperfil = function (req, res, next) {
+		console.log('trajo', req.body.tipo_usuario)
+
+		res.render('./user/Perfil.jade', {
+			isAuthenticated: req.isAuthenticated(),
+			user: req.user
+
+		});
+	};
+
 	this.getUsuarios = function (req, res, next) {
 		db.connect();
 		db.query('SELECT * FROM usuario inner join tipo_usuario on id_Tipo = tipo_usuario', function (err, rows, fields) {
@@ -94,35 +114,26 @@ function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email
 				user: req.user
 			});
 		});
-	};
-	this.getModificar = function (req, res, next) {
-		identificacion: req.body.ide;
-		usuario: req.body.us;
-		
-		console.log('trajo id', identificacion)
-		console.log('trajo us', usuario)
-
-		if (identificacion != null) {
+	},
+		this.getModificar2 = function (req, res, next) {
+			console.log('trajo pararmetro', req.params.identificacion);
+			res.render('./user/modificar.jade', {
+				isAuthenticated: req.isAuthenticated(),
+				user: req.user
+			});
+		},
+		this.getModificar = function (req, res, next) {
+			console.log('parametros', req.params);
+			var identificacion = req.params.identificacion;
 			db.connect();
 			db.query('SELECT * FROM usuario WHERE identificacion = ?', identificacion, function (err, rows, fields) {
 				if (err) throw err;
 				resultado = rows;
 				console.log(resultado);
 				db.end();
-				res.render('./user/modificar.jade', { persona: resultado });
-			});
-
-		} else if (usuario != null) {
-			db.connect();
-			db.query('SELECT * FROM usuario WHERE usuario = ?', usuario, function (err, rows, fields) {
-				if (err) throw err;
-				resultado = rows;
-				console.log(resultado);
-				db.end();
-				res.render('./user/modificar.jade', { persona: resultado });
+				res.render('user/modificar', {usuario:resultado});
 			});
 		}
-	}
 	return this;
 };
 

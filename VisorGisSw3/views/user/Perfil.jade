@@ -1,0 +1,23 @@
+extends ../templates/default 
+block content
+	center
+		div(class=['ui', 'container', 'grid', 'stackable'])
+		div(class=['sixteen', 'wide', 'column'])
+
+			h2(class=['ui', 'header', 'blue', 'dividing'])= 'Perfil '+ user.usuario
+
+			table(class=['ui', 'table', 'celled'] id = 'tbl-usuarios')
+				tbody
+					tr
+						p= 'Identificacion: ' + user.id
+						p= 'Nombre: ' + user.nombre
+						p= 'Apellido: '+ user.apellido
+						p= 'Usuario: '+ user.usuario
+						p= 'Fecha de nacimiento: '+ user.nacimiento
+						p= 'Email: '+ user.email
+						p= 'Telefono: '+ user.telefono
+						if user.roll==1
+							p= 'Roll : Administrador'
+						if user.roll==2
+							p= 'Roll :Usuario'
+						p= 'fecha de registro: ' + user.registro
