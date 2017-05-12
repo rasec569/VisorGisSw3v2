@@ -12,26 +12,26 @@ block content
           form(action='http://localhost:3000/user/modificar' method='post' autocomplete='on')
             div(class='form-group')
               label(for="ide")= 'Idetificación'
-              input(type='text' name='ide' id='ide' placeholder='Idetificación' class='form-control' value=usuario[0].identificacion)
+              input(type='text' name='ide' id='ide' placeholder='Idetificación' class='form-control' value=Usuario[0].identificacion)
             div(class='form-group')
               label(for="nom")= 'Nombre'
-              input(type='text' name='nom' id='nom' placeholder='Nombre' class='form-control' value=usuario[0].nombre)
+              input(type='text' name='nom' id='nom' placeholder='Nombre' class='form-control' value=Usuario[0].nombre)
             div(class='form-group')
               label(for="ape")= 'Apellido'
-              input(type='text' name='ape' id='ape' placeholder='Apellido' class='form-control' value=usuario[0].apellido)
+              input(type='text' name='ape' id='ape' placeholder='Apellido' class='form-control' value=Usuario[0].apellido)
             div(class='form-group')
               label(for="nac")= 'Fecha de nacimiento'
-              input(type='date' name='nac' id='nac' placeholder='Fecha de nacimiento' class='form-control' value=usuario[0].nacimiento)
+              input(type='date' name='nac' id='nac' placeholder='Fecha de nacimiento' class='form-control' value=Usuario[0].nacimiento)
             div(class='form-group')
               label(for="us")= 'Usuario'
-              input(type='text' name='us' id='us' placeholder='Usuario' class='form-control' value=usuario[0].usuario)
+              input(type='text' name='us' id='us' placeholder='Usuario' class='form-control' value=Usuario[0].usuario)
             div(class='form-group')
               label(for="pas")= 'Password'
-              input(type='password' name='pas' id='pas' placeholder='Password' class='form-control' value=usuario[0].pass)
+              input(type='text' name='pas' id='pas' placeholder='Password' class='form-control' value=Usuario[0].pass)
             div(class='form-group')
               label(for="email")= 'Email'
-              input(type='email' name='email' id='email' placeholder='Email' class='form-control' value=usuario[0].email)
+              input(type='email' name='email' id='email' placeholder='Email' class='form-control' value=Usuario[0].email)
             div(class='form-group')
               label(for="tel")= 'Telefono'
-              input(type='text' name='tel' id='tel' placeholder='Telefono' class='form-control' value=usuario[0].telefono)
+              input(type='text' name='tel' id='tel' placeholder='Telefono' class='form-control' value=Usuario[0].telefono)
             button(type="submit" class='btn btn-default')= 'Modificar'

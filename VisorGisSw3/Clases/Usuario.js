@@ -51,7 +51,7 @@ function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email
 					if (err.errno == 1062) {
 						req.flash('mensaje', 'Usuario registrado')
 						res.render('./user/registrar.jade', { mensaje: req.flash('mensaje'), authmessage: req.flash('authmessage') });
-						db.end();
+						
 
 						//res.redirect('registrar');
 
@@ -65,6 +65,7 @@ function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email
 					res.redirect('inicioSec');
 				}
 			});
+			db.end();
 	};
 
 	this.getinicioSec = function (req, res, next) {
@@ -87,8 +88,7 @@ function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email
 	this.getvisoradmin = function (req, res, next) {
 		console.log('trajo', req.body.tipo_usuario)
 
-		res.render('./administrador/visoradmin.jade', {
-			isAuthenticated: req.isAuthenticated(),
+		res.render('./administrador/visoradmin.jade', {	isAuthenticated: req.isAuthenticated(),
 			user: req.user
 
 		});
@@ -117,23 +117,24 @@ function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email
 			});
 		});
 	},
-		this.getModificar2 = function (req, res, next) {
-			console.log('trajo pararmetro', req.params.identificacion);
-			res.render('./user/modificar.jade', {
-				isAuthenticated: req.isAuthenticated(),
-				user: req.user
-			});
-		},
 		this.getModificar = function (req, res, next) {
-			console.log('parametros', req.params);
-			var identificacion = req.params.identificacion;
-			db.connect();
-			db.query('SELECT * FROM usuario WHERE identificacion = ?', identificacion, function (err, rows, fields) {
+			var db2 = mysql.createConnection(conexion);
+			var iden = req.params.iden;
+			db2.connect();
+			db2.query('SELECT * FROM usuario WHERE identificacion = ?', iden, function (err, rows, fields) {
 				if (err) throw err;
 				resultado = rows;
-				console.log(resultado);
-				db.end();
-				res.render('user/modificar', {usuario:resultado});
+				var me = "";
+				me= rows[0].nacimiento;
+				var res0 =String(me);
+				var valor = res0.substring(4, 16);
+				
+				//var me= resultado.nacimiento;
+				console.log("que hizo", valor);
+				db2.end();
+				res.render('user/modificar', {Usuario: resultado, x: me, isAuthenticated: req.isAuthenticated(),
+				user: req.user });
+				
 			});
 		}
 	return this;
