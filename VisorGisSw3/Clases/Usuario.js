@@ -7,6 +7,8 @@ var bcrypt = require('bcryptjs');
 // Datos
 var conexion = require('../Datos/conexion');
 var db = mysql.createConnection(conexion);
+// formato fecha
+var dateFormat = require('dateformat');
 
 
 function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email, telefono, tipo_usuario, fecha_registro) {
@@ -119,20 +121,35 @@ function Usuario(Identificacion, Nombre, Apellido, Nacimiento, User, Pass, email
 	},
 		this.getModificar = function (req, res, next) {
 			var db2 = mysql.createConnection(conexion);
+			
 			var iden = req.params.iden;
+			var Rol = null;  
 			db2.connect();
+			db2.query('SELECT * FROM tipo_usuario', function (err, rows, fields) {
+				if (!err) {
+                    Rol =  rows                    
+                var str = JSON.stringify(Rol);
+                console.log(str+ ' Roles');
+                } else {
+                res.render('home.jade');
+        };
+
+			})
 			db2.query('SELECT * FROM usuario WHERE identificacion = ?', iden, function (err, rows, fields) {
 				if (err) throw err;
 				resultado = rows;
 				var me = "";
-				me= rows[0].nacimiento;
-				var res0 =String(me);
-				var valor = res0.substring(4, 16);
-				
+				var me2 = "";
+				me= rows[0].fecha_registro;
+				me2= rows[0].nacimiento;
+				var fecha2 = dateFormat(me2, 'yyyy-mm-dd');
+				var fecha = dateFormat(me, 'yyyy-mm-dd');
+				//var res0 =String(me);
+				//var valor = res0.substring(4, 16);
 				//var me= resultado.nacimiento;
-				console.log("que hizo", valor);
+				//console.log("que hizo", valor);
 				db2.end();
-				res.render('user/modificar', {Usuario: resultado, x: me, isAuthenticated: req.isAuthenticated(),
+				res.render('user/modificar', {Usuario: resultado, x: fecha, y: fecha2 , rol:Rol, isAuthenticated: req.isAuthenticated(),
 				user: req.user });
 				
 			});
