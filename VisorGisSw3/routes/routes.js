@@ -20,13 +20,20 @@ if (IUsuario() == true) {
                 failureRedirect: '/login/inicioSec',
                 failureflash: true
         }));
-       router.get('/login/salir', Controllers.ControlUser.salir);
-       router.get('/user/panel', Autenticado.isLogged, Controllers.ControlUser.getpanelusuario);
-       router.get('/user/visoradmin', Autenticado.isLogged, Controllers.ControlUser.getvisoradmin);
-       router.get('/user/gestionar', Autenticado.isLogged, Controllers.ControlUser.getgestionarUs);
-       router.get('/user/perfil', Autenticado.isLogged, Controllers.ControlUser.getperfil);
-       router.get('/user/modificar/:iden', Autenticado.isLogged, Controllers.ControlUser.getModificar);
+        router.get('/login/salir', Controllers.ControlUser.salir);
+        router.get('/user/panel', Autenticado.isLogged, Controllers.ControlUser.getpanelusuario);
+        router.get('/user/visoradmin', Autenticado.isLogged, Controllers.ControlUser.getvisoradmin);
+        router.get('/user/gestionar', Autenticado.isLogged, Controllers.ControlUser.getgestionarUs);
+        router.get('/user/perfil', Autenticado.isLogged, Controllers.ControlUser.getperfil);
+        router.get('/user/registrar', Autenticado.isLogged, Controllers.ControlUser.getregistraruser);
+        router.post('/user/registrar', Autenticado.isLogged, Controllers.ControlUser.postregistrar);
+        router.get('/user/modificar/:iden', Autenticado.isLogged, Controllers.ControlUser.getModificar);
+        router.post('/user/modificar', Autenticado.isLogged, Controllers.ControlUser.postModificar);
+        router.post('/user/gestionar', Autenticado.isLogged, Controllers.ControlUser.eliminarPersona);
 
+        router.get('/user/registrar/inmueble', Controllers.ControlInmueble.getregistrarinmueble);
 }
+
+
 
 module.exports = router;

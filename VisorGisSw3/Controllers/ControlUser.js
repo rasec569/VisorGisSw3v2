@@ -9,6 +9,10 @@ module.exports = {
 	getregistrar: function (req, res, next) {
 		u.getregistrar(req, res, next);
 	},
+	getregistraruser: function (req, res, next) {
+		u.getregistraruser(req, res, next);
+	},
+	
 	postregistrar: function (req, res, next) {
 		u.postregistrar(req, res, next);
 	},
@@ -33,6 +37,12 @@ module.exports = {
 	},
 	getModificar: function (req, res, next) {
 		u.getModificar(req, res, next);
-		
-	}
+	},
+	postModificar: function (req, res, next) {
+		u.postModificar(req, res, next);
+	},
+	eliminarPersona : function(req, res, next){
+        u.eliminar(req, res, next);
+    }
+
 };

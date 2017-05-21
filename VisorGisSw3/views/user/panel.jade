@@ -4,12 +4,12 @@ link(rel="stylesheet" href="//esri.github.io/bootstrap-map-js/src/css/bootstrapm
 
 block content
 
-  p= 'Bienvenido  ' + user.nombre +' '+user.apellido+' ---'
+  p= 'Identificado como  ' + user.nombre +' '+user.apellido+' ---'
   if user.roll==1
     center
       button(type="submit" class='btn btn-default' onclick=" location.href='http://localhost:3000/user/gestionar' " )= 'Gestionar Usuario'
       p
-      button(type="submit" class='btn btn-default' onclick=" location.href='http://www.google.com' " )= 'Gestionar Inmueble'
+      button(type="submit" class='btn btn-default' onclick=" location.href='http://localhost:3000/user/registrar/inmueble' " )= 'Gestionar Inmueble'
       p
       button(type="submit" class='btn btn-default' onclick=" location.href='http://www.google.com' " )= 'Gestionar Comuna'
       p

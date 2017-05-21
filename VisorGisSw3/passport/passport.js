@@ -18,17 +18,18 @@ module.exports = function (passport) {
 	passport.use(new LocalStrategy({
 		passReqToCallback: true
 	}, function (req, us, password, done) {
-		var db = mysql.createConnection(conexion);
+		console.log('Entro');
+		var db2 = mysql.createConnection(conexion);
 		console.log('Usuario: ' + us);
 		console.log('pass: ' + password);
-		db.connect();
+		db2.connect();
 
-		db.query('SELECT * FROM usuario where usuario = ?', us, function (err, rows, fields) {
+		db2.query('SELECT * FROM usuario where usuario = ?', us, function (err, rows, fields) {
 			console.log(rows);
 
 			if (err) throw err;
 			//return throw err);
-			db.end();
+			db2.end();
 
 			if (rows.length > 0) {
 				var user = rows[0];
