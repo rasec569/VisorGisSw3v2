@@ -50,14 +50,9 @@ function Inmueble(FID, Name, X, Y, Tipo, Direccion, habitacion, baños, garaje){
 					if (err.errno == 1062) {
 						req.flash('mensaje', 'Usuario registrado')
 						res.render('./user/registrar.jade', { mensaje: req.flash('mensaje'), authmessage: req.flash('authmessage') });
-
-
 						//res.redirect('registrar');
-
 					} else {
-
 						res.redirect('inicioSec');
-
 					}
 				} else {
 					req.flash('mensaje', 'Registo corecto, puede iniciar sesion')

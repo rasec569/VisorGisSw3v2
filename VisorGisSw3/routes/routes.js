@@ -16,7 +16,7 @@ if (IUsuario() == true) {
         router.post('/login/registrar', Controllers.ControlUser.postregistrar);
         router.get('/login/inicioSec', Controllers.ControlUser.getinicioSec);
         router.post('/login/inicioSec', passport.authenticate('local', {
-                successRedirect: '/user/panel',
+                successRedirect: '/',
                 failureRedirect: '/login/inicioSec',
                 failureflash: true
         }));

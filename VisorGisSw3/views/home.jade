@@ -1,6 +1,30 @@
-extends templates/default
+extends templates/default.jade
 
 block content
-  h1= 'Pagina de inicio'
-  if isAuthenticated
-    p= 'Bienvenido Usuario: '+ user.nombre
+  div(style='text-align:center;')
+    if isAuthenticated
+      h1='Bienvenido '+ user.nombre +' '+user.apellido +' encuentra un hogar acogedor.'
+      img(src='img/logo2-1.png')
+      .w3-content.w3-section
+        img.mySlides(src='img/Slide-1.jpeg')
+        img.mySlides(src='img/Slide-2.jpeg')
+        img.mySlides(src='img/Slide-3.jpeg')
+        img.mySlides(src='img/Slide-4.jpeg')
+        img.mySlides(src='img/Slide-5.jpg')
+      script.
+        var myIndex = 0;
+        carousel();
+        function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}
+        x[myIndex-1].style.display = "block";
+        setTimeout(carousel, 2000);
+        }
+      h2 ¿Qué puedo hacer Inmobiliaria Amazónica ?
+      h3 ¿Quieres encontrar un hogar que se ajuste a tus necesidades, en línea, de forma gratuita y sin tener que desplazarte por la ciudad buscando? 
+      h3 ¡Entonces Inmobiliaria Amazónica es lo que te recetó el médico! Este visor de mapas en línea te permite ubicar y destacar el mejor hogar para ti de una manera facil y eficaz.

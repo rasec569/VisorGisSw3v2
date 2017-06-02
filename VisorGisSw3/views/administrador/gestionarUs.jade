@@ -1,28 +1,21 @@
 extends ../templates/default 
 block content
 	center
-		div(class='col-md-2 col-md-offset-5')
+		div(class='col-md-2 col-md-offset-5' align="center")
 			form.form(action='http://localhost:3000/user/gestionar' method='post' autocomplete='on')
-				table(border='0')
-					tbody
-					tr
-						td
-						input(type='text' name='ide' id='ide' placeholder='Idetificación' class='form-control')
-					tr
-						td
-						input(type='text' name='us' id='us' placeholder='Usuario' class='form-control')
-					tr
-						td
-							tr
-								center
-									br
-									td
-									imput(type="button", id='btCrear', value='Crear', class='btn btn-default' onclick='RedireccionarABoton2()' )= 'Crear'
-									
-									td
-									imput(type="button", id='btModificar', value='Modificar', class='btn btn-default' onclick='RedireccionarABoton1()' )= 'Modificar'
-									td
-									button(type="submit", class='btn btn-default' )= 'Eliminar'
+				
+				input(type='text' name='ide' id='ide' placeholder='Idetificación' class='form-control btn-block')
+				br
+				input(type='text' name='us' id='us' placeholder='Usuario' class='form-control btn-block')
+				br
+				.col-xs-12.col-sm-6
+					imput(type="button", id='btCrear', value='Crear', class='btn btn-success btn-block' onclick='RedireccionarABoton2()' )= 'Crear'
+				.col-xs-12.col-sm-6
+					imput(type="button", id='btModificar', value='Modificar', class='btn btn-info btn-block' onclick='RedireccionarABoton1()' )= 'Modificar'
+					
+				.col-xs-12.col-sm-12
+					br
+					button(type="submit", class='btn btn-danger btn-block' )= 'Eliminar'
 
 			script(type='text/javascript').
 
@@ -41,11 +34,11 @@ block content
 
 
 	div(class=['ui', 'container', 'grid', 'stackable'])
-	div(class=['sixteen', 'wide', 'column'])
+	div( class=['sixteen', 'wide', 'column'])
 
-		h2(class=['ui', 'header', 'blue', 'dividing'])= 'Lista de Usuarios'
+		h4(class=['ui', 'header', 'blue', 'dividing', 'center'])= 'Lista de Usuarios'
 
-		table(class=['ui', 'table', 'celled'] id = 'tbl-usuarios')
+		table(class=['ui', 'table table-striped', 'celled' , 'text-align:center'] id = 'tbl-usuarios')
 			thead
 				tr
 					th='Identificacion'
